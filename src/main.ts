@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import express from "express";
 import 'express-async-errors';
 import {PortfolioController} from "./controllers/portfolioController";
+import {TwitterController} from "./controllers/twitterController";
 const app = express();
 
 dotenv.config();
@@ -40,6 +41,12 @@ app.delete("/portfolio/:username", async (req, res) => {
   const portfolioController = new PortfolioController();
   await portfolioController.deleteItem(req.params.username);
   res.send("Record removed");
+});
+
+app.get("/twitter/:username", async (req, res) => {
+  const twitterController = new TwitterController();
+  const result = await twitterController.getTweetsFromUser(req.params.username);
+  res.send(result);
 });
 
 app.use((err: any, req: any, res: any, next: any) => {
