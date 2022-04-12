@@ -18,11 +18,5 @@ module.exports = {
     },
   },
   coverageReporters: ["json", "lcov", "text", "clover", "json-summary"],
-  reporters: [
-    "default",
-    [
-      "jest-silent-reporter",
-      { useDots: true, showWarnings: false, showPaths: true },
-    ],
-  ],
+  reporters: ["default"],
 };
